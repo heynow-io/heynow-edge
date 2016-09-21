@@ -91,7 +91,6 @@ switch (TARGET) {
             devtool: 'eval-source-map',
             devServer: {
                 historyApiFallback: true,
-                hot: true,
                 inline: true,
                 stats: 'errors-only',
                 host: properties.server.HOST,
