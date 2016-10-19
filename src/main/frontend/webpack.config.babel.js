@@ -69,7 +69,11 @@ const common = {
             $: 'jquery',
             jQuery: 'jquery',
         })
-    ]
+    ],
+    node: {
+        fs: "empty",
+        proxyquire: "empty"
+    }
 };
 
 switch (TARGET) {

@@ -13,10 +13,10 @@
     "react/jsx-indent-props": ["error", 4],
     "react/jsx-filename-extension": "off",
     "max-len": ["error", 120],
-
     "linebreak-style": "off",
     "no-console": "off",
     "import/no-extraneous-dependencies": "off",
+    "react/forbid-prop-types": "off",
     "react/require-extension": "off"
   },
   "plugins": [

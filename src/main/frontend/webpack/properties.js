@@ -16,7 +16,7 @@ export const server = {
 };
 
 export const DEV_PROXY = {
-    '/*': {
+    '/': {
         target: 'http://localhost:8081',
         secure: false,
         prependPath: false,

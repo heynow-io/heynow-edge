@@ -1,0 +1,89 @@
+{
+  "streams": [
+    {
+      "id": 1,
+      "name": "stream1",
+      "description": "test stream 1",
+      "rootNode": {
+        "id": 1,
+        "operator": {
+          "id": 1,
+          "name": "operator1"
+        },
+        "parents": [
+          {
+            "id": 2,
+            "operator": {
+              "id": 2,
+              "name": "operator2",
+              "properties": [
+                {
+                  "id": 1,
+                  "name": "prop1",
+                  "value": "test property 1"
+                },
+                {
+                  "id": 2,
+                  "name": "prop2",
+                  "value": "test property 2"
+                }
+              ]
+            },
+            "parents": [
+              {
+                "id": 3,
+                "operator": {
+                  "id": 3,
+                  "eventSource": "eventSource1",
+                  "eventType": "eventType1"
+                },
+                "parents": []
+              },
+              {
+                "id": 4,
+                "operator": {
+                  "id": 4,
+                  "eventSource": "eventSource2",
+                  "eventType": "eventType2"
+                },
+                "parents": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "stream2",
+      "description": "test stream 2",
+      "rootNode": {
+        "id": 5,
+        "operator": {
+          "id": 5,
+          "name": "operator5"
+        },
+        "parents": [
+          {
+            "id": 6,
+            "operator": {
+              "id": 6,
+              "name": "operator6"
+            },
+            "parents": [
+              {
+                "id": 7,
+                "operator": {
+                  "id": 7,
+                  "eventSource": "eventSource3",
+                  "eventType": "eventType3"
+                },
+                "parents": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
