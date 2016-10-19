@@ -3,6 +3,26 @@ import { connect } from 'react-redux';
 import Graph from '../graph/Graph';
 import Operator from './Operator';
 
+function findNode(rootNode, id) {
+    if (!rootNode) {
+        return null;
+    }
+
+    let nodes = [rootNode];
+
+    while (nodes.length > 0) {
+        const current = nodes.shift();
+
+        if (current.id === id) {
+            return current;
+        }
+
+        nodes = [...nodes, ...current.parents];
+    }
+
+    return null;
+}
+
 class StreamsShow extends React.Component {
     constructor(props) {
         super(props);
@@ -13,32 +33,11 @@ class StreamsShow extends React.Component {
         };
     }
 
-    handleNodeSelected(id) {
-        const { stream } = this.props;
-
+    componentWillReceiveProps(nextProps) {
         this.setState({
-            selectedNode: this.findNode(stream.rootNode, id),
+            graph: this.createGraph(nextProps.stream.rootNode),
+            selectedNode: null,
         });
-    }
-
-    findNode(rootNode, id) {
-        if (!rootNode) {
-            return null;
-        }
-
-        let nodes = [rootNode];
-
-        while(nodes.length > 0) {
-            const current = nodes.shift();
-
-            if (current.id === id) {
-                return current;
-            } else {
-                nodes = [...nodes, ...current.parents];
-            }
-        }
-
-        return null;
     }
 
     createGraph(node) {
@@ -63,10 +62,11 @@ class StreamsShow extends React.Component {
         return graph;
     }
 
-    componentWillReceiveProps(nextProps) {
+    handleNodeSelected(id) {
+        const { stream } = this.props;
+
         this.setState({
-            graph: this.createGraph(nextProps.stream.rootNode),
-            selectedNode: null,
+            selectedNode: findNode(stream.rootNode, id),
         });
     }
 

@@ -8,13 +8,11 @@ const Operator = ({ operator }) => (
         {operator.eventType && <h4>Event type: {operator.eventType}</h4>}
         <h4>Properties:</h4>
         <ul className="list-group">
-            {operator.properties && operator.properties.map(property => {
-                return (
-                    <li className="list-group-item" key={property.id}>
-                        {property.name}: {property.value}
-                    </li>
-                )
-            })}
+            {operator.properties && operator.properties.map(property => (
+                <li className="list-group-item" key={property.id}>
+                    {property.name}: {property.value}
+                </li>)
+            )}
         </ul>
     </div>
 );
