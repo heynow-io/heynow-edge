@@ -1,17 +1,5 @@
 spring:
   application:
     name: heynow-edge
-
-server:
-  port: ${PORT:8081}
-
-zuul:
-  routes:
-    stream-manager:
-      path: /stream-manager/**
-      serviceId: stream-manager
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://localhost:9000}/eureka/
+logging:
+  file: application.log
