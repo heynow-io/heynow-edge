@@ -1,6 +1,6 @@
 class StreamApi {
     static getAllStreams() {
-        return fetch('api/stream-manager/streams')
+        return fetch('stream-manager/streams')
             .then(response => response.json())
             .catch(error => error);
     }
