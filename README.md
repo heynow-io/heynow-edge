@@ -25,4 +25,4 @@ To run the application simply execute the following command:
 
 ## Frontend development
 
-Since the frontend is built using webpack, it's possible to use [webpack-dev-server](https://github.com/webpack/webpack-dev-server) in order to have live reloading available and the backend accessible. Simply run `npm start` and the webpack-dev-server will start on port 9090 with a preconfigured proxy that will redirect all calls to the backend running on port 8081.
+Since the frontend is built using webpack, it's possible to use [webpack-dev-server](https://github.com/webpack/webpack-dev-server) in order to have live reloading available and the backend accessible. Simply run `npm start` and the webpack-dev-server will start on port 9090 with a preconfigured proxy that will redirect all calls to the backend running on port 8080.
