@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import ReactMarkdown from 'react-markdown';
 import Graph from '../graph/Graph';
 import Operator from './Operator';
 
@@ -28,39 +29,18 @@ class StreamsShow extends React.Component {
         super(props);
         this.handleNodeSelected = this.handleNodeSelected.bind(this);
         this.state = {
-            graph: this.createGraph(props.stream.rootNode),
+            graph: props.stream.rootNode,
             selectedNode: null,
         };
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            graph: this.createGraph(nextProps.stream.rootNode),
+            graph: nextProps.stream.rootNode,
             selectedNode: null,
         });
     }
 
-    createGraph(node) {
-        let graph = {
-            nodes: [
-                {
-                    id: node.id,
-                    label: node.operator.name ? node.operator.name : node.operator.eventSource,
-                },
-            ],
-            edges: [...node.parents.map(parent => ({ from: parent.id, to: node.id, arrows: 'to' }))],
-        };
-
-        for (const parent of node.parents) {
-            const parentGraph = this.createGraph(parent);
-            graph = {
-                nodes: [...graph.nodes, ...parentGraph.nodes],
-                edges: [...graph.edges, ...parentGraph.edges],
-            };
-        }
-
-        return graph;
-    }
 
     handleNodeSelected(id) {
         const { stream } = this.props;
@@ -72,10 +52,13 @@ class StreamsShow extends React.Component {
 
     render() {
         const { stream } = this.props;
+        if (!stream.name) {
+            return <p className="text-muted text-center">Loading...</p>;
+        }
         return (
-            <div className="col-md-8 col-md-offset-2">
+            <div className="animated fadeInRight">
                 <h1>{ stream.name }</h1>
-                <p>description: { stream.description }</p>
+                <div><ReactMarkdown source={stream.description} /></div>
                 <Graph graph={this.state.graph} onNodeSelected={this.handleNodeSelected} />
                 {this.state.selectedNode && <Operator operator={this.state.selectedNode.operator} />}
             </div>
@@ -89,7 +72,7 @@ StreamsShow.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    let stream = { name: '' };
+    let stream = {};
     if (state.streams.length > 0) {
         /* eslint-disable eqeqeq */
         stream = Object.assign({}, state.streams.find(s => s.id == ownProps.params.id));

@@ -16,7 +16,8 @@ const common = {
     },
     output: {
         path: BUILD_DIR,
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: '/'
     },
     externals: {
         'cheerio': 'window',
@@ -51,6 +52,10 @@ const common = {
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file?name=public/fonts/[name].[ext]'
+            },
+            {
+                test: /\.json$/,
+                loader: 'json'
             }
         ]
     },

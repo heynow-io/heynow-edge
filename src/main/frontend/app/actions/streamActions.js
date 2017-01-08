@@ -13,3 +13,11 @@ export function loadStreams() {
             throw error;
         });
 }
+
+export const addStream = stream => dispatch =>
+    streamApi.addStream(stream).then((response) => {
+        dispatch({
+            type: types.ADD_STREAM_SUCCESS,
+            response,
+        });
+    });

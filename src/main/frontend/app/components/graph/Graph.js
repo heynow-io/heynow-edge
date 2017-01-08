@@ -20,6 +20,38 @@ class Graph extends React.Component {
         this.updateGraph();
     }
 
+    createGraph(node) {
+        if (!node.operator) {
+            return {};
+        }
+        const edges = node.parents ? [...node.parents.map(parent => ({
+            from: parent.id,
+            to: node.id,
+            arrows: 'to',
+        }))] : [];
+        let graph = {
+            nodes: [
+                {
+                    id: node.id,
+                    label: node.operator.name ? node.operator.name : node.operator.eventSource,
+                },
+            ],
+            edges,
+        };
+
+        if (node.parents) {
+            for (const parent of node.parents) {
+                const parentGraph = this.createGraph(parent);
+                graph = {
+                    nodes: [...graph.nodes, ...parentGraph.nodes],
+                    edges: [...graph.edges, ...parentGraph.edges],
+                };
+            }
+        }
+
+        return graph;
+    }
+
     updateGraph() {
         const container = document.getElementById(this.props.identifier);
         const options = {
@@ -38,7 +70,8 @@ class Graph extends React.Component {
             },
         };
 
-        const network = new vis.Network(container, this.props.graph, options);
+        const graph = this.createGraph(this.props.graph);
+        const network = new vis.Network(container, graph, options);
         network.on('select', event => this.handleSelect(event));
     }
 
@@ -50,7 +83,7 @@ class Graph extends React.Component {
 
     render() {
         return React.createElement('div',
-            { id: this.props.identifier, style: this.props.style },
+            { id: this.props.identifier, style: this.props.style, className: 'well' },
             this.props.identifier);
     }
 }
@@ -64,7 +97,7 @@ Graph.propTypes = {
 
 Graph.defaultProps = {
     graph: {},
-    style: { width: '640px', height: '480px' },
+    style: { height: '480px' },
     identifier: uuid.v4(),
 };
 
