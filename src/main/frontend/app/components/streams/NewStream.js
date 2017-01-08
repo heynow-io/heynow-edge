@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import OperatorsList from './OperatorsList';
 import NewStreamForm from './NewStreamForm';
 import { setTitle } from '../common/Title';
@@ -24,7 +25,7 @@ class NewStream extends React.Component {
                 rootNode: JSON.parse(values.rootNode),
                 description: values.description,
                 name: values.name,
-            }));
+            }, arg => browserHistory.push(`/streams/${arg.id}`)));
         }
     }
 

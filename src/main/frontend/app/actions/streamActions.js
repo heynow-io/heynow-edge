@@ -14,10 +14,11 @@ export function loadStreams() {
         });
 }
 
-export const addStream = stream => dispatch =>
+export const addStream = (stream, onSuccess) => dispatch =>
     streamApi.addStream(stream).then((response) => {
         dispatch({
             type: types.ADD_STREAM_SUCCESS,
             response,
         });
-    });
+        return response;
+    }).then(onSuccess);
