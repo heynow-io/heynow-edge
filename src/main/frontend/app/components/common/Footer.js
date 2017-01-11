@@ -18,16 +18,19 @@ const Footer = () => (
                     <ul>
                         <li>
                             <a href="https://heynow-io.github.io/">
+                                <i className="fa fa-file-text-o" aria-hidden="true" />
                                 Documentation
                             </a>
                         </li>
                         <li>
                             <a href="https://heynow-io.slack.com/messages">
+                                <i className="fa fa-slack" aria-hidden="true" />
                                 Slack Channel
                             </a>
                         </li>
                         <li>
                             <a href="https://github.com/heynow-io">
+                                <i className="fa fa-github" aria-hidden="true" />
                                 GitHub
                             </a>
                         </li>

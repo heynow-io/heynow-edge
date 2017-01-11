@@ -20,7 +20,7 @@ class StreamsIndex extends React.Component {
                             <h4 className="col-md-8">List</h4>
                             <div className="col-md-4">
                                 <Link to="/new-stream" className="btn btn-default pull-right">
-                                    <span className="glyphicon glyphicon-plus" /> NEW STREAM
+                                    <span className="fa fa-plus" /> NEW STREAM
                                 </Link>
                             </div>
                         </div>
