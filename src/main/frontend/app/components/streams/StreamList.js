@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 const StreamList = ({ streams }) => (
-    <ul className="list-group">
+    <div>
         { streams.map(stream =>
-            <li className="list-group-item" key={stream.id}>
-                <Link to={`/streams/${stream.id}`}>{ stream.name }</Link>
-            </li>
+            <p key={stream.id}>
+                <Link to={`/streams/${stream.id}`}> { stream.name }</Link>
+            </p>
         ) }
-    </ul>
+    </div>
 );
 
 StreamList.propTypes = {

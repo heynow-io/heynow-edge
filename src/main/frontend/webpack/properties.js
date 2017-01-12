@@ -16,8 +16,8 @@ export const server = {
 };
 
 export const DEV_PROXY = {
-    '/': {
-        target: 'http://localhost:8081',
+    '/stream-manager': {
+        target: 'http://104.197.200.159:80',
         secure: false,
         prependPath: false,
     },

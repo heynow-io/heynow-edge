@@ -1,12 +1,16 @@
 import React, { PropTypes } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import Header from './common/Header';
-import '../../styles/main.css';
+import Title from './common/Title';
+import Footer from './common/Footer';
 
 const App = ({ children }) => (
-    <div className="container-fluid">
+    <div>
         <Header />
-        { children }
+        <Title />
+        <div className="container mb">
+            { children }
+        </div>
+        <Footer />
     </div>
 );
 
